@@ -9,6 +9,9 @@ public class Animal extends Common{
     String type;
 
 
-
+    public Animal(String name) {
+        super(name);
+    }
 
 }
+

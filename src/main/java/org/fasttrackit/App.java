@@ -7,8 +7,7 @@ public class App
 {
     public static void main( String[] args )
     {
-        Animal animal = new Animal();
-        animal.name = "Berg";
+        Animal animal = new Animal("Berg");
         animal.age = 4;
         animal.favActivity = "Aport";
         animal.favFood = "meat";
@@ -17,26 +16,22 @@ public class App
         animal.type = "dog";
         animal.race = "Beagle";
 
-        Adopter adopter = new Adopter();
-        adopter.name = "Player1";
+        Adopter adopter = new Adopter("Player1");
         adopter.cash = 200;
 
-        AnimalFood animalFood = new AnimalFood();
-        animalFood.name = "meat";
+        AnimalFood animalFood = new AnimalFood("meat");
         animalFood.price = 35;
         animalFood.quantity = 15;
         animalFood.stock = 10;
 
 
-        Vet vet = new Vet();
+        Vet vet = new Vet("Vety");
         vet.age = 40;
         vet.experience = 12;
         vet.gender = "male";
         vet.specialty = "cat and dog";
-        vet.name = "Vety";
 
-        Activity activity = new Activity();
-        activity.name = "feed";
+        Activity activity = new Activity("feed");
         activity.responsible = "Player1";
         activity.moodLevel = +1;
         activity.healthLevel = +2;
@@ -46,13 +41,9 @@ public class App
         game.dog = "running";
         game.vet = "cuddle";
 
-        if (animal.health >= 8 && animal.mood >= 7){
-            System.out.println("Happy Pet! Congradulations " + adopter.name );
-            adopter.score ++;
-            System.out.println("New Score:" + adopter.score);
+        System.out.println("We have a pet named " +animal.name +"  and a pet owner named "+adopter.name);
 
         }
-        System.out.println();
-        System.out.println("First App ;)");
+
     }
-}
+

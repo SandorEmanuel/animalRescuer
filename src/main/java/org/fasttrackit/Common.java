@@ -5,4 +5,9 @@ public class Common {
     String gender;
     int age;
 
+    public Common (String name){
+        this.name = name;
+    }
+
+
 }

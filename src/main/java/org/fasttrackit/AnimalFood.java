@@ -9,5 +9,9 @@ public class AnimalFood {
     int stock;
     LocalDateTime expirationDate;
 
+    public AnimalFood (String name){
+        this.name = name;
+    }
+
 
 }

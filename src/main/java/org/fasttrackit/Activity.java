@@ -6,5 +6,8 @@ public class Activity {
     int moodLevel;
     int healthLevel;
 
+    public Activity(String name){
+        this.name = name;
 
+    }
 }
