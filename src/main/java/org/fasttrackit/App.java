@@ -14,7 +14,7 @@ public class App
         animal.favFood = "meat";
         animal.health = 10;
         animal.mood = 8;
-        animal.species = "dog";
+        animal.type = "dog";
         animal.race = "Beagle";
 
         Adopter adopter = new Adopter();
@@ -26,6 +26,7 @@ public class App
         animalFood.price = 35;
         animalFood.quantity = 15;
         animalFood.stock = 10;
+
 
         Vet vet = new Vet();
         vet.age = 40;

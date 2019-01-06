@@ -1,10 +1,7 @@
 package org.fasttrackit;
 
-public class Vet {
-    String name;
+public class Vet extends Common {
     String specialty;
-    String gender;
-    int age;
     int experience;
 
 }

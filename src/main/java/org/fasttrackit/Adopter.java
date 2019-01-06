@@ -1,11 +1,6 @@
 package org.fasttrackit;
 
-public class Adopter {
-    String name;
-    String gender;
+public class Adopter extends Common {
     int cash;
-    int age;
     int score;
-
-
 }

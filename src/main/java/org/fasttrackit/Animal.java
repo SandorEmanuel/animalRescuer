@@ -1,14 +1,12 @@
 package org.fasttrackit;
 
-public class Animal {
-    String name;
-    int age;
+public class Animal extends Common{
     int health;
     int mood;
     String favFood;
     String favActivity;
     String race;
-    String species;
+    String type;
 
 
 
