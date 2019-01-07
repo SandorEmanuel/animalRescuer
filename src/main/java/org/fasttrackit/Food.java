@@ -2,12 +2,16 @@ package org.fasttrackit;
 
 import java.time.LocalDateTime;
 
-public class AnimalFood {
+public class Food {
     private String name;
     private double price;
     private double quantity;
     private int stock;
     private LocalDateTime expirationDate;
+
+    public Food(String name){
+        this.name = name;
+    }
 
     public String getName() {
         return name;
@@ -48,10 +52,4 @@ public class AnimalFood {
     public void setExpirationDate(LocalDateTime expirationDate) {
         this.expirationDate = expirationDate;
     }
-
-    public AnimalFood (String name){
-        this.name = name;
-    }
-
-
 }

@@ -1,12 +1,42 @@
 package org.fasttrackit;
 
-public class Animal extends Common{
+public class Animal {
+    private String name;
+    private int age;
     private int health;
     private int mood;
     private String favFood;
     private String favActivity;
     private String race;
     private String type;
+
+    public Animal (String name){
+        this.name=name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
 
     public int getMood() {
         return mood;
@@ -47,18 +77,5 @@ public class Animal extends Common{
     public void setType(String type) {
         this.type = type;
     }
-
-    public int getHealth() {
-        return health;
-    }
-
-    public void setHealth(int health) {
-        this.health = health;
-    }
-
-    public Animal(String name) {
-        super(name);
-    }
-
 }
 
