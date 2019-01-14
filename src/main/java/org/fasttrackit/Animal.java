@@ -14,6 +14,10 @@ public class Animal {
         this.name=name;
     }
 
+    public void showMood(){
+        System.out.println("Your pet "+getName()+" is happy!");
+    }
+
     public String getName() {
         return name;
     }

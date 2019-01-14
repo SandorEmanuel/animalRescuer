@@ -7,7 +7,7 @@ public class Rescuer {
     private int score;
 
     public Rescuer (String name){
-        this.name=name;
+            this.name=name;
     }
 
     public String getName() {

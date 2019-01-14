@@ -1,17 +1,15 @@
 package org.fasttrackit;
 
-public class Dog extends Animal{
+public class Cat extends Animal {
+
     int sleepDuration;
 
-    public Dog(String name) {
+    public Cat(String name) {
         super(name);
     }
-
-    @Override
-    public void showMood() {
-        System.out.println("Your dog "+getName()+" is happy and it`s waging his tail!");
+    public void showMood(){
+        System.out.println("Your cat "+getName()+" is happy and its purring!");
     }
-
     public int getSleepDuration() {
         return sleepDuration;
     }

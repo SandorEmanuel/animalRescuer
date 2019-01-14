@@ -33,7 +33,7 @@ public class App
         activity.setMoodLevel(+1);
         activity.setHealthLevel(+2);
 
-        Game game = new Game(animal);
+        Game game = new Game(animal, rescuer);
 
 
         Food food1 = new Food("Pedigree");
@@ -46,7 +46,17 @@ public class App
         Rescuer.feed(animal1, rescuer1, food1);
 
         Rescuer.play(rescuer, animal, activity);
-        }
+
+        System.out.println();
+
+        Animal animal2 = new Dog("Azorel");
+        Animal animal3 = new Cat("Kitty");
+
+        animal1.showMood();
+        animal2.showMood();
+        animal3.showMood();
+    }
+
 
     }
 

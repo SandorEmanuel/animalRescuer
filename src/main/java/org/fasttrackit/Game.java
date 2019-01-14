@@ -6,8 +6,13 @@ public class Game {
     private Vet vet;
 
 
-    public Game(Animal animal){
-        this.animal=animal;
+    public Game(Animal animal, Rescuer rescuer){
+        this.animal = animal;
+        this.rescuer = rescuer;
+    }
+    public Game(Animal animal, Vet vet){
+        this.animal = animal;
+        this.vet = vet;
     }
 
     public Rescuer getRescuer() {
