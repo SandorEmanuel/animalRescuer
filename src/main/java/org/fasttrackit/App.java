@@ -51,10 +51,12 @@ public class App
 
         Animal animal2 = new Dog("Azorel");
         Animal animal3 = new Cat("Kitty");
+        Animal animal4 = new Dog("Grivei");
 
         animal1.showMood();
         animal2.showMood();
         animal3.showMood();
+        animal4.showMood();
     }
 
 
