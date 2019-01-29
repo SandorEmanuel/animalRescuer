@@ -9,6 +9,19 @@ public class Rescuer {
     public Rescuer (String name){
             this.name=name;
     }
+    public static int feed(Animal animal, Rescuer rescuer, Food food) {
+
+        animal.hungerLevel--;
+        System.out.println(rescuer.getName() + " just gave some " + food.getName() + " food to " + animal.getName() + ". New Hunger Level: " + animal.hungerLevel);
+        return animal.hungerLevel;
+    }
+
+    public static int play(Rescuer rescuer, Animal animal, Activity activity){
+
+        animal.happinesLevel++;
+        System.out.println("Rescuer " + rescuer.getName() + " and Pet " + animal.getName() + " playing " + activity.getName() + "." + "New happiness level of your pet " + animal.getName() + " is: " + animal.happinesLevel);
+        return animal.happinesLevel;
+    }
 
     public String getName() {
         return name;
@@ -42,14 +55,7 @@ public class Rescuer {
         this.score = score;
     }
 
-    public static void feed(Animal animal, Rescuer rescuer, Food food) {
 
-        System.out.println(rescuer.getName() + " just gave some " + food.getName() + " food to " + animal.getName());
-    }
-
-    public static void play(Rescuer rescuer, Animal animal, Activity activity){
-            System.out.println("Rescuer "+rescuer.getName()+" and Pet "+animal.getName()+" playing "+activity.getName());
-    }
 
     }
 

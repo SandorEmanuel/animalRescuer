@@ -9,6 +9,8 @@ public class Animal {
     private String favActivity;
     private String race;
     private String type;
+    int hungerLevel;
+    int happinesLevel;
 
     public Animal (String name){
         this.name=name;
