@@ -10,7 +10,7 @@ public class Animal {
     private String race;
     private String type;
     int hungerLevel;
-    int happinesLevel;
+    int happinessLevel;
 
     public Animal (String name){
         this.name=name;

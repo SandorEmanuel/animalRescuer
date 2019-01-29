@@ -1,10 +1,8 @@
 package org.fasttrackit;
 
 
-public class App
-{
-    public static void main( String[] args )
-    {
+public class App {
+    public static void main(String[] args) {
         Animal animal = new Animal("Chaika");
         animal.setAge(4);
         animal.setFavActivity("Aport");
@@ -17,7 +15,7 @@ public class App
         Rescuer rescuer = new Rescuer("John");
         rescuer.setCash(200);
 
-        Food food = new Food("Purina");
+        Food food = new Food("meat");
         food.setPrice(35);
         food.setQuantity(15);
         food.setStock(10);
@@ -33,6 +31,8 @@ public class App
         activity.setMoodLevel(+1);
         activity.setHealthLevel(+2);
 
+        Activity activity1 = new Activity("Frisbee");
+
         Game game = new Game(animal, rescuer);
 
 
@@ -43,20 +43,21 @@ public class App
 
         Rescuer.feed(animal, rescuer, food);
 
-        Rescuer.feed(animal1, rescuer1, food1);
+
+
 
         Rescuer.play(rescuer, animal, activity);
+        Rescuer.play(rescuer, animal, activity1);
 
-        System.out.println();
 
         Animal animal2 = new Dog("Azorel");
         Animal animal3 = new Cat("Kitty");
         Animal animal4 = new Dog("Grivei");
 
-        animal1.showMood(); //metoda din clasa Animal
-        animal2.showMood(); //metoda din clasa Dog
-        animal3.showMood(); //metoda din clasa Cat
-        animal4.showMood(); //metoda din clasa Dog
+//        animal1.showMood(); //metoda din clasa Animal
+//        animal2.showMood(); //metoda din clasa Dog
+//        animal3.showMood(); //metoda din clasa Cat
+//        animal4.showMood(); //metoda din clasa Dog
     }
 
 
