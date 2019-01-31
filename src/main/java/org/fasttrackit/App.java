@@ -49,15 +49,19 @@ public class App {
         Rescuer.play(rescuer, animal, activity);
         Rescuer.play(rescuer, animal, activity1);
 
+        game.start();
 
-        Animal animal2 = new Dog("Azorel");
-        Animal animal3 = new Cat("Kitty");
-        Animal animal4 = new Dog("Grivei");
+
+//        Animal animal2 = new Dog("Azorel");
+//        Animal animal3 = new Cat("Kitty");
+//        Animal animal4 = new Dog("Grivei");
 
 //        animal1.showMood(); //metoda din clasa Animal
 //        animal2.showMood(); //metoda din clasa Dog
 //        animal3.showMood(); //metoda din clasa Cat
 //        animal4.showMood(); //metoda din clasa Dog
+
+
     }
 
 
