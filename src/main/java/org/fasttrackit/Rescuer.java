@@ -6,18 +6,18 @@ public class Rescuer {
     private int cash;
     private int score;
 
-    public Rescuer(String name) {
+    public Rescuer() {
         this.name = name;
     }
 
-    public static int feed(Animal animal, Rescuer rescuer, Food food) {
+    public static int feed(Rescuer rescuer, Animal animal, Food food) {
 
-        animal.hungerLevel--;
+        animal.hungerLevel -= 2;
         System.out.println(rescuer.getName() + " just gave some " + food.getName() + " food to " + animal.getName() + ". New Hunger Level: " + animal.hungerLevel);
         System.out.println();
         if (food.getName() == animal.getFavFood()) {
             animal.happinessLevel++;
-            System.out.println(animal.getName() + " happines level is: " + animal.happinessLevel);
+            System.out.println(animal.getName() + " happiness level is: " + animal.happinessLevel);
             System.out.println();
         }
         return animal.hungerLevel;
@@ -27,11 +27,13 @@ public class Rescuer {
     public static int play(Rescuer rescuer, Animal animal, Activity activity) {
         if (activity.getName() == animal.getFavActivity()) {
             animal.happinessLevel += 2;
-            System.out.println("Rescuer " + rescuer.getName() + " and Pet " + animal.getName() + " playing " + activity.getName() + "." + "New happiness level of your pet " + animal.getName() + " is: " + animal.happinessLevel);
+            animal.hungerLevel ++;
+            System.out.println(rescuer.getName()+" and " + animal.getName() + " playing " + activity.getName() + "." + "New happiness level of your pet " + animal.getName() + " is: " + animal.happinessLevel);
             System.out.println();
         } else if (activity.getName() != animal.getFavActivity()) {
             animal.happinessLevel++;
-            System.out.println("Rescuer " + rescuer.getName() + " and Pet " + animal.getName() + " playing " + activity.getName() + "." + "New happiness level of your pet " + animal.getName() + " is: " + animal.happinessLevel);
+            animal.hungerLevel ++;
+            System.out.println(rescuer.getName()+" and " + animal.getName() + " playing " + activity.getName() + "." + "New happiness level of your pet " + animal.getName() + " is: " + animal.happinessLevel);
             System.out.println();
         }
 
