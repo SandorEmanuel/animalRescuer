@@ -48,7 +48,7 @@ public class Game {
         showStats();
         addActivities();
         addFoods();
-
+gameNextActionFromUser();
 //        while (dog.happinessLevel > 5 && dog.hungerLevel < 5) {
 //            int i;
 //            for (i = 0, i <= numberOfRounds, i++) {
