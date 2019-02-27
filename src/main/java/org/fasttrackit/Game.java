@@ -8,64 +8,41 @@ import java.util.concurrent.ThreadLocalRandom;
 
 
 public class Game {
-    private Rescuer rescuer;
-    private Animal animal;
-    private Vet vet;
 
+    private Activity[] activities = new Activity[5];
+    private Food[] foods = new Food[5];
+    private List<Animal> animals = new ArrayList<>();
+    private List<Rescuer> rescuers = new ArrayList<>();
 
-    public Activity[] activities = new Activity[5];
-    public Food[] foods = new Food[5];
-
-    public Game(Animal animal, Rescuer rescuer) {
-        this.animal = animal;
-        this.rescuer = rescuer;
-    }
-
-    public Game(Animal animal, Vet vet) {
-        this.animal = animal;
-        this.vet = vet;
-    }
-
-    public Game(Animal animal) {
-        this.animal = animal;
-    }
-
-    public Game() {
-    }
-
-    Dog dog = new Dog("Pet1");
-    Rescuer rescuer1 = new Rescuer();
 
     public void start() {
-        rescuer1.setName(initRescuer());
-        dog.setName(nameAnimal());
-        dog.setFavActivity("01.Aport");
-        dog.setFavFood("03.Meat");
-        dog.happinessLevel = ThreadLocalRandom.current().nextInt(0, 5);
-        dog.hungerLevel = ThreadLocalRandom.current().nextInt(5, 10);
-
-        int numberOfRounds = gameLengthFromUser();
-        showStats();
+        initRescuer();
+        initAnimal();
         addActivities();
         addFoods();
-gameNextActionFromUser();
-//        while (dog.happinessLevel > 5 && dog.hungerLevel < 5) {
-//            int i;
-//            for (i = 0, i <= numberOfRounds, i++) {
-//                gameNextActionFromUser();
-//                if (gameNextActionFromUser() == 1) {
-//                    requireActivity();
-//                } else if (gameNextActionFromUser() == 2) {
-//                    requireFeeding();
-//                }
-//
-//
-//            }
-//
-//        }
-        requireFeeding();
-        requireActivity();
+        showStats();
 
+        int numberOfRounds = gameLengthFromUser();
+
+        while (animals.get(0).hungerLevel > 5 && animals.get(0).happinessLevel < 5) {
+
+            for (int i = 0; i < numberOfRounds; i++) {
+                if (gameNextActionFromUser() == 1) {
+                    requireActivity();
+                } else {
+                    requireFeeding();
+                }
+            }
+            if (animals.get(0).hungerLevel < 5 || animals.get(0).happinessLevel > 5) {
+                System.out.println("Game Over");
+                showStats();
+                break;
+            } else if (animals.get(0).hungerLevel > 5 || animals.get(0).happinessLevel < 5) {
+                System.out.println("Well done for today!");
+                showStats();
+                break;
+            }
+        }
     }
 
     private int gameLengthFromUser() {
@@ -96,32 +73,31 @@ gameNextActionFromUser();
     }
 
     private void availableActions() {
-        System.out.println("1.Play");
-        System.out.println("2.Feed");
+        System.out.println("1 - Play");
+        System.out.println("2 - Feed");
     }
 
     private void initAnimal() {
-        Animal dog = new Dog("Rex");
+        Animal dog = new Dog(getAnimalNameFromUser());
         dog.setAge(3);
         dog.setRace("Beagle");
-        dog.setFavActivity("Track");
+        dog.setFavActivity("3.Tracking");
         dog.setFavFood("3.Meat");
+        dog.happinessLevel = ThreadLocalRandom.current().nextInt(1, 5);
+        dog.hungerLevel = ThreadLocalRandom.current().nextInt(6, 10);
+        animals.add(dog);
 
     }
 
-    private String initRescuer() {
+    private void initRescuer() {
+        Rescuer rescuer = new Rescuer();
         Scanner scanner = new Scanner(System.in);
-        try {
-            System.out.println("Please enter a name for the rescuer: ");
-            String rescuerNameFromUser = scanner.nextLine();
-            return rescuerNameFromUser;
-        } catch (InputMismatchException e) {
-            System.out.println("Try again");
-            return initRescuer();
-        }
+        System.out.println("Please enter a name for the rescuer: ");
+        rescuer.setName(scanner.nextLine());
+        rescuers.add(rescuer);
     }
 
-    private String nameAnimal() {
+    private String getAnimalNameFromUser() {
         System.out.println("Please enter a name for your Dog: ");
         Scanner scanner = new Scanner(System.in);
         String animalNameFromUser = scanner.nextLine();
@@ -129,14 +105,13 @@ gameNextActionFromUser();
     }
 
     private String requireFeeding() {
-        System.out.println("Your pet is hungry");
         showAvailableFoods();
         try {
             System.out.println("Please enter the number of food you want to feed your pet: ");
             Scanner scanner = new Scanner(System.in);
             int x = scanner.nextInt();
             if (x - 1 <= foods.length) {
-                rescuer.feed(rescuer1, dog, foods[x - 1]);
+                rescuers.get(0).feed(rescuers.get(0), animals.get(0), foods[x - 1]);
             }
         } catch (IndexOutOfBoundsException | NullPointerException | InputMismatchException e) {
             System.out.println("Please enter a valid integer:");
@@ -146,15 +121,14 @@ gameNextActionFromUser();
     }
 
     private String requireActivity() {
-        System.out.println("Your pet needs to play");
         showAvailableActivities();
         try {
             System.out.println("Please enter the index number for the activity you want to play with your pet: ");
             Scanner scanner = new Scanner(System.in);
             int x = scanner.nextInt();
-            if (x - 1 <= activities.length) {
-                rescuer.play(rescuer1, dog, activities[x - 1]);
-            }
+            if (x - 1 <= activities.length)
+                rescuers.get(0).play(rescuers.get(0), animals.get(0), activities[x - 1]);
+
         } catch (IndexOutOfBoundsException | NullPointerException | InputMismatchException e) {
             System.out.println("Please enter a valid integer:");
             return requireActivity();
@@ -201,36 +175,9 @@ gameNextActionFromUser();
     }
 
     private void showStats() {
-        System.out.println("Rescuer name: " + rescuer1.getName());
-        System.out.println("Dog name: " + dog.getName());
-        System.out.println(dog.getName() + " happiness level is: " + dog.happinessLevel);
-        System.out.println(dog.getName() + " hunger level is: " + dog.hungerLevel);
+        System.out.println("Rescuer name: " + rescuers.get(0).getName());
+        System.out.println("Dog name: " + animals.get(0).getName());
+        System.out.println(animals.get(0).getName() + " happiness level is: " + animals.get(0).happinessLevel);
+        System.out.println(animals.get(0).getName() + " hunger level is: " + animals.get(0).hungerLevel);
     }
-
-
-    public Rescuer getRescuer() {
-        return rescuer;
-    }
-
-    public void setRescuer(Rescuer rescuer) {
-        this.rescuer = rescuer;
-    }
-
-    public Animal getAnimal() {
-        return animal;
-    }
-
-    public void setAnimal(Animal animal) {
-        this.animal = animal;
-    }
-
-    public Vet getVet() {
-        return vet;
-    }
-
-    public void setVet(Vet vet) {
-        this.vet = vet;
-    }
-
-
 }
