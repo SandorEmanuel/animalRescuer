@@ -1,6 +1,7 @@
-package org.fasttrackit;
+package org.fasttrackit.domain;
 
 public class Animal {
+    private int id;
     private String name;
     private int age;
     private int health;
@@ -9,15 +10,42 @@ public class Animal {
     private String favActivity;
     private String race;
     private String type;
-    int hungerLevel;
-    int happinessLevel;
+    private int hungerLevel;
+    private int happinessLevel;
 
-    public Animal (String name){
-        this.name=name;
+    public Animal(String name) {
     }
 
-    public void showMood(){
-        System.out.println("Your pet "+getName()+" is happy!");
+    public Animal() {
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getHungerLevel() {
+        return hungerLevel;
+    }
+
+    public void setHungerLevel(int hungerLevel) {
+        this.hungerLevel = hungerLevel;
+    }
+
+    public int getHappinessLevel() {
+        return happinessLevel;
+    }
+
+    public void setHappinessLevel(int happinessLevel) {
+        this.happinessLevel = happinessLevel;
+    }
+
+    public void showMood() {
+        System.out.println("Your pet " + getName() + " is happy!");
     }
 
     public String getName() {

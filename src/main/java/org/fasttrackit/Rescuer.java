@@ -1,5 +1,7 @@
 package org.fasttrackit;
 
+import org.fasttrackit.domain.Animal;
+
 public class Rescuer {
     private String name;
     private String gender;
@@ -12,32 +14,32 @@ public class Rescuer {
 
     public static int feed(Rescuer rescuer, Animal animal, Food food) {
 
-        animal.hungerLevel -= 2;
-        System.out.println(rescuer.getName() + " just gave some " + food.getName() + " food to " + animal.getName() + ". New Hunger Level: " + animal.hungerLevel);
+        animal.setHungerLevel(animal.getHungerLevel()-2);
+        System.out.println(rescuer.getName() + " just gave some " + food.getName() + " food to " + animal.getName() + ". New Hunger Level: " + animal.getHungerLevel());
         System.out.println();
         if (food.getName() == animal.getFavFood()) {
-            animal.happinessLevel++;
-            System.out.println(animal.getName() + " happiness level is: " + animal.happinessLevel);
+            animal.setHappinessLevel(animal.getHappinessLevel()+1);
+            System.out.println(animal.getName() + " happiness level is: " + animal.getHappinessLevel());
             System.out.println();
         }
-        return animal.hungerLevel;
+        return animal.getHungerLevel();
     }
 
 
     public static int play(Rescuer rescuer, Animal animal, Activity activity) {
         if (activity.getName() == animal.getFavActivity()) {
-            animal.happinessLevel += 2;
-            animal.hungerLevel ++;
-            System.out.println(rescuer.getName()+" and " + animal.getName() + " playing " + activity.getName() + "." + "New happiness level of your pet " + animal.getName() + " is: " + animal.happinessLevel);
+            animal.setHappinessLevel(animal.getHappinessLevel()+2);
+            animal.setHungerLevel(animal.getHungerLevel()+1);
+            System.out.println(rescuer.getName()+" and " + animal.getName() + " playing " + activity.getName() + "." + "New happiness level of your pet " + animal.getName() + " is: " + animal.getHappinessLevel());
             System.out.println();
         } else if (activity.getName() != animal.getFavActivity()) {
-            animal.happinessLevel++;
-            animal.hungerLevel ++;
-            System.out.println(rescuer.getName()+" and " + animal.getName() + " playing " + activity.getName() + "." + "New happiness level of your pet " + animal.getName() + " is: " + animal.happinessLevel);
+            animal.setHappinessLevel(animal.getHappinessLevel()+1);
+            animal.setHungerLevel(animal.getHungerLevel()+1);
+            System.out.println(rescuer.getName()+" and " + animal.getName() + " playing " + activity.getName() + "." + "New happiness level of your pet " + animal.getName() + " is: " + animal.getHappinessLevel());
             System.out.println();
         }
 
-        return animal.happinessLevel;
+        return animal.getHappinessLevel();
     }
 
     public String getName() {

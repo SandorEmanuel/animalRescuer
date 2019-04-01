@@ -1,5 +1,12 @@
 package org.fasttrackit;
 
+import org.fasttrackit.domain.Animal;
+import org.fasttrackit.domain.Dog;
+import org.fasttrackit.persistance.AnimalRepository;
+import org.fasttrackit.service.AnimalService;
+
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -13,33 +20,42 @@ public class Game {
     private Food[] foods = new Food[5];
     private List<Animal> animals = new ArrayList<>();
     private List<Rescuer> rescuers = new ArrayList<>();
+    private AnimalService animalService = new AnimalService();
+
+   private Animal animal = new Animal();
 
 
-    public void start() {
+    public void start() throws Exception {
         initRescuer();
-        initAnimal();
+        animal.setName(getAnimalNameFromUser());
+        animalService.selectAnimal(animal);
         addActivities();
         addFoods();
+        animalService.selectAnimal(animal);
         showStats();
 
         int numberOfRounds = gameLengthFromUser();
 
-        while (animals.get(0).hungerLevel > 5 && animals.get(0).happinessLevel < 5) {
+        while (animal.getHungerLevel() > 5 && animal.getHappinessLevel() < 5) {
 
             for (int i = 0; i < numberOfRounds; i++) {
                 if (gameNextActionFromUser() == 1) {
                     requireActivity();
+
                 } else {
                     requireFeeding();
+
                 }
             }
-            if (animals.get(0).hungerLevel < 5 || animals.get(0).happinessLevel > 5) {
+            if (animal.getHungerLevel() < 5 || animal.getHappinessLevel() > 5) {
                 System.out.println("Game Over");
-                showStats();
+                animalService.updateAnimal(animal);
+
                 break;
-            } else if (animals.get(0).hungerLevel > 5 || animals.get(0).happinessLevel < 5) {
+            } else if (animal.getHungerLevel() > 5 || animal.getHappinessLevel() < 5) {
                 System.out.println("Well done for today!");
-                showStats();
+                animalService.updateAnimal(animal);
+
                 break;
             }
         }
@@ -77,15 +93,17 @@ public class Game {
         System.out.println("2 - Feed");
     }
 
-    private void initAnimal() {
-        Animal dog = new Dog(getAnimalNameFromUser());
-        dog.setAge(3);
-        dog.setRace("Beagle");
-        dog.setFavActivity("3.Tracking");
-        dog.setFavFood("3.Meat");
-        dog.happinessLevel = ThreadLocalRandom.current().nextInt(1, 5);
-        dog.hungerLevel = ThreadLocalRandom.current().nextInt(6, 10);
-        animals.add(dog);
+    public void initAnimal() throws SQLException, IOException, ClassNotFoundException {
+
+        animal.setName(getAnimalNameFromUser());
+        animal.setAge(3);
+        animal.setRace("Beagle");
+        animal.setFavActivity("3.Tracking");
+        animal.setFavFood("3.Meat");
+        animal.setHappinessLevel(ThreadLocalRandom.current().nextInt(1, 5));
+        animal.setHungerLevel(ThreadLocalRandom.current().nextInt(6, 10));
+
+        animalService.createAnimal(animal);
 
     }
 
@@ -111,7 +129,7 @@ public class Game {
             Scanner scanner = new Scanner(System.in);
             int x = scanner.nextInt();
             if (x - 1 <= foods.length) {
-                rescuers.get(0).feed(rescuers.get(0), animals.get(0), foods[x - 1]);
+                rescuers.get(0).feed(rescuers.get(0), animal, foods[x - 1]);
             }
         } catch (IndexOutOfBoundsException | NullPointerException | InputMismatchException e) {
             System.out.println("Please enter a valid integer:");
@@ -127,7 +145,7 @@ public class Game {
             Scanner scanner = new Scanner(System.in);
             int x = scanner.nextInt();
             if (x - 1 <= activities.length)
-                rescuers.get(0).play(rescuers.get(0), animals.get(0), activities[x - 1]);
+                rescuers.get(0).play(rescuers.get(0), animal, activities[x - 1]);
 
         } catch (IndexOutOfBoundsException | NullPointerException | InputMismatchException e) {
             System.out.println("Please enter a valid integer:");
@@ -176,8 +194,8 @@ public class Game {
 
     private void showStats() {
         System.out.println("Rescuer name: " + rescuers.get(0).getName());
-        System.out.println("Dog name: " + animals.get(0).getName());
-        System.out.println(animals.get(0).getName() + " happiness level is: " + animals.get(0).happinessLevel);
-        System.out.println(animals.get(0).getName() + " hunger level is: " + animals.get(0).hungerLevel);
+        System.out.println("Dog name: " + animal.getName());
+        System.out.println(animal.getName() + " happiness level is: " + animal.getHappinessLevel());
+        System.out.println(animal.getName() + " hunger level is: " + animal.getHungerLevel());
     }
 }
